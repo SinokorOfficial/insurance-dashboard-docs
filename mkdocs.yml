@@ -1,0 +1,79 @@
+site_name: 장금그룹 보험증권 취합 대시보드 · 개발 문서
+site_description: 해상보험 증권·보험료를 한 화면에서 검색·집계하는 사내 도구의 공개 개발 문서 (MkDocs Material → GitHub Pages)
+site_url: https://sinokorofficial.github.io/insurance-dashboard-docs/
+
+repo_name: SinokorOfficial/insurance-dashboard
+repo_url: https://github.com/SinokorOfficial/insurance-dashboard
+
+docs_dir: docs
+
+# 운영 시크릿·인프라 리소스명(IP·공유폴더·VNet·계정)·실제 보험료/부보금액 등
+# 사내 전용 정보는 본 공개 리포에 포함하지 않는다.
+
+nav:
+  - 홈: index.md
+
+  - 시스템:
+      - 아키텍처 개요: architecture.md
+      - 모듈 맵: modules.md
+      - 데이터 모델: data-model.md
+
+  - 업무:
+      - 업무 규칙 (BR-1~12): business-rules.md
+      - 재생성 파이프라인: pipeline.md
+      - 증권 판독: cert-parsing.md
+
+  - 화면:
+      - 화면 구성: screens.md
+      - 성능: performance.md
+
+  - 운영:
+      - 배포 개요: deployment.md
+      - 갱신 절차: operations.md
+
+  - 변경 이력: changelog.md
+
+theme:
+  name: material
+  language: ko
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
