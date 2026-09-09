@@ -5,12 +5,19 @@
 
 ## 구성
 
-```mermaid
-flowchart LR
-    GH["GitHub<br/>main 브랜치"] -->|Actions| IMG["컨테이너 이미지<br/>(사내 레지스트리)"]
-    IMG --> APP["웹앱 컨테이너<br/>gunicorn"]
-    APP -->|SMB| NAS[("사내 NAS<br/>보험데이터.json + certs/")]
-    USER["사내 이용자"] -->|사내 도메인 · 비밀번호| APP
+```text
+   GitHub main ──[Actions]──▶ 컨테이너 이미지 ──▶ 웹앱 컨테이너
+                               (사내 레지스트리)      (gunicorn)
+                                                          │
+                                                     SMB  │
+                                                          ▼
+                                              ┌───────────────────────┐
+                                              │      사내 NAS         │
+                                              │  보험데이터.json      │
+                                              │  certs/               │
+                                              └───────────────────────┘
+                                                          ▲
+   사내 이용자 ──[사내 도메인 · 공유 비밀번호]────────────┘
 ```
 
 - 이미지는 `python:3.12-slim` 기반, 비루트 사용자로 실행합니다.
